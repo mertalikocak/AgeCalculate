@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homework1</title>
+  </head>
+  <body>
+    <script>
+      function ageCalculate() {
+        var bdateVal = document.getElementById("bdate").value;
+        const bdate = new Date(bdateVal);
+        const curDate = new Date();
+        if (
+          Math.abs(curDate.getUTCMonth() > bdate.getUTCMonth()) |
+          (Math.abs(curDate.getUTCMonth() == bdate.getUTCMonth()) &
+            Math.abs(curDate.getUTCDate() >= bdate.getUTCDate()))
+        ) {
+          age = Math.abs(curDate.getUTCFullYear() - bdate.getUTCFullYear());
+          console.log(age);
+          return age;
+        } else {
+          age = Math.abs(curDate.getUTCFullYear() - bdate.getUTCFullYear() - 1);
+          console.log(age);
+          return age;
+        }
+      }
+      function writeInf() {
+        var age = ageCalculate();
+        var name = document.getElementById("name").value;
+        var surname = document.getElementById("surname").value;
+
+        if (isNaN(age) | (name == "") | (surname == "")) {
+          document.getElementById("info").innerHTML =
+            "Lütfen boş bırakmayınız.";
+        } else {
+          document.getElementById("info").innerHTML =
+            "Merhaba " + name + " " + surname + ". " + "Yaşınız: " + age;
+          document.getElementById("info2").innerHTML =
+            "Bu hesaplayıcıda body, h1, div, form, input, label, span etiketleri kullanılmıştır.";
+        }
+      }
+    </script>
+    <h1>Yaş Hesaplayıcı</h1>
+    <form action="">
+      <label for="isim">İsim</label>
+      <br />
+      <input type="text" name="isim" id="name" required />
+      <br />
+      <label for="soyisim">Soyisim</label>
+      <br />
+      <input type="text" name="soyisim" id="surname" required />
+      <br />
+      <label for="tarih">Doğum Tarihi</label>
+      <br />
+      <input type="date" id="bdate" required />
+      <br />
+      <input type="button" onclick="writeInf()" value="Calculate Age" />
+      <div id="info"></div>
+    </form>
+    <span id="info2"></span>
+  </body>
+</html>
